@@ -1,0 +1,10 @@
+#!/bin/bash
+
+PSOF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DB_NAME=$(xmllint --xpath "string(//project/database/name)" $1)
+DB_DRIVER=$(xmllint --xpath "string(//project/database/driver)" $1)
+DB_HOST=$(xmllint --xpath "string(//project/database/host)" $1)
+DB_PORT=$(xmllint --xpath "string(//project/database/port)" $1)
+DB_USERNAME=$(xmllint --xpath "string(//project/database/username)" $1)
+DB_PASSWORD=$(xmllint --xpath "string(//project/database/password)" $1)
+

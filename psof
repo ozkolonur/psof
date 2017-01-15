@@ -1,0 +1,23 @@
+#!/bin/bash
+
+#http://stackoverflow.com/a/16496491/1047804
+
+
+#mysqldump -h localhost -p3306 -utmp_todo -p==== tmp_todo > db/source/main.sql
+usage() { echo "Usage: $0 [-s <45|90>] [-p <string>]" 1>&2; exit 1; }
+
+case ${1} in
+    "create") 
+    shift
+    psof_create "$@"
+    ;;
+    "regenerate-db-sources") 
+    shift
+    psof_regen "$@"
+    ;;
+    "commit") 
+    shift
+    psof_commit "$@"
+    ;;
+esac
+

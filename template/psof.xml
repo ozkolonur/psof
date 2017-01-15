@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<project>
+    <name>${PSOF_PROJECT_NAME}</name>
+    <version>${PSOF_PROJECT_VERSION}</version>
+    <application>
+	<language>java</language>
+    </application>
+    <database>
+	<driver>${PSOF_PROJECT_DATABASE_HOST}</driver>
+	<host>${PSOF_PROJECT_DATABASE_HOST}</host>
+	<port>${PSOF_PROJECT_DATABASE_PORT}</port>
+	<name>${PSOF_PROJECT_DATABASE_NAME}</name>
+	<username>${PSOF_PROJECT_DATABASE_USERNAME}</username>
+	<password>${PSOF_PROJECT_DATABASE_PASSWORD}</password>
+	<version>${PSOF_PROJECT_DATABASE_VERSION}</version>
+    </database>
+</project>

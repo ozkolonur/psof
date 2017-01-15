@@ -1,0 +1,102 @@
+#!/bin/bash
+
+PSOF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source ${PSOF_DIR}/psof_config $PWD/psof.xml
+
+echo Generating sources from DB
+
+#check_db_differences() { 
+#    #create a guid
+#    #create a db for previous version use guid above
+#    #compare with current if different show diffs
+#    #if yes: create both update & rollback scripts
+#}
+
+generate_uuid(){
+    UUID=$(cat /proc/sys/kernel/random/uuid)
+    UUID=${UUID:0:4}
+    echo UUID=${UUID}
+}
+
+create_db(){
+    #tac ile dosyayi tersten okuyabiliriz
+    db_version_to_create=$2
+    echo "Creating $1 to version ${db_version_to_create}"
+    while read p; do
+      echo $p
+    done <$PWD/${PSOF_PROJECT_NAME}/db/diff/list
+    #sed -e "s/\${PSOF_PROJECT_DATABASE_NAME}/${PSOF_PROJECT_NAME}/" \
+    #-e "s/\${PSOF_PROJECT_DATABASE_VERSION}/${PSOF_PROJECT_DATABASE_VERSION}/" -i $PWD/$1/db/create_db.sql
+    #mysql -h${DB_HOST} -u${DB_USERNAME} -p${DB_PASSWORD} < $PWD/$1/db/create_db.sql
+
+}
+
+compare_db() {
+    #http://stackoverflow.com/a/17337056/1047804 
+    echo comparedb
+}
+
+commit(){
+    echo commit
+}
+
+show_changes(){
+    echo show
+}
+
+
+show_changes(){
+    echo show
+}
+
+compare_db() {
+    reference_db=$1
+    target_db=$2
+    #result=0,1
+    #update_script
+    #rollback_script
+}
+#dbversion=$(mysql ${DB_NAME} -h ${DB_HOST} -p${DB_PORT} -u${DB_USERNAME} -p${DB_PASSWORD} -se "select version from __DBVERSION__")
+#echo dbversion=${dbversion}
+#generate_uuid
+
+UUID=$(cat /proc/sys/kernel/random/uuid)
+UUID=${UUID:0:4}
+last_version=$(sed -e '$!d' db/diff/list)
+REFERENCE_DB=${DB_NAME}_${UUID}
+create_db ${REFERENCE_DB} ${last_version}
+compare_db ${REFERENCE_DB} ${DB_NAME}
+
+exit 0;
+
+echo "You have uncommitted changes in database (DDLs), Do you want to commit these changes?"
+select result in "Commit them too" "Show me the changes" "Ignore Changes, and commit other changes" "Cancel this commit operation"
+do
+    echo $result
+    case ${result} in
+	"Commit them too")
+	commit "$@"
+	;;
+	"Show me the changes")
+	show_changes "$@"
+	;;
+	"Ignore Changes, and commit other changes")
+	break;
+	;;
+	"Cancel this commit operation")
+	exit 0;
+	;;
+	* )
+    	echo No
+	;;
+    esac
+done
+
+
+echo continuing commit
+
+#TODO check if we are in correct dir, using psof.xml
+#mkdir -p $PWD/db/sources/procedure
+#mysqldump -h ${DB_HOST} -p${DB_PORT} -u${DB_USERNAME} -p${DB_PASSWORD} ${DB_NAME} --routines > $PWD/db/sources/procedure/procedure.sql
+
