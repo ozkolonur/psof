@@ -4,11 +4,11 @@ PSOF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source ${PSOF_DIR}/psof_config $PWD/psof.xml
 
-echo Clean
+echo Building project:${PSOF_XML_PROJECT_NAME}
 
 case $PSOF_XML_PROJECT_APPLICATION_LANGUAGE in
     "java") 
-    BUILD_CMD="mvn clean -f app/pom.xml"
+    BUILD_CMD="docker run -d -p 8080:8080 -t ${PSOF_XML_PROJECT_NAME}:latest"
     $BUILD_CMD
     ;;
 esac

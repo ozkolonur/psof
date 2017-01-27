@@ -7,6 +7,6 @@ DB_HOST=$(xmllint --xpath "string(//project/database/host)" $1)
 DB_PORT=$(xmllint --xpath "string(//project/database/port)" $1)
 DB_USERNAME=$(xmllint --xpath "string(//project/database/username)" $1)
 DB_PASSWORD=$(xmllint --xpath "string(//project/database/password)" $1)
-APPLICATION_LANGUAGE=$(xmllint --xpath "string(//project/application/language)" $1)
-
+PSOF_XML_PROJECT_APPLICATION_LANGUAGE=$(xmllint --xpath "string(//project/application/language)" $1)
+PSOF_XML_PROJECT_NAME=$(xmllint --xpath "string(//project/name)" $1)
 
