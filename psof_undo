@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PSOF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source ${PSOF_DIR}/psof_config $PWD/psof.xml
+
+echo TODO SCM UNDO
+
+echo $APPLICATION_LANGUAGE
+case $APPLICATION_LANGUAGE in
+    "java") 
+    #BUILD_CMD="mvn package -f app/pom.xml"
+    #$BUILD_CMD
+    ;;
+esac
+
+exit 0;
+

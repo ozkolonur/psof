@@ -19,5 +19,21 @@ case ${1} in
     shift
     psof_commit "$@"
     ;;
+    "build") 
+    shift
+    psof_build "$@"
+    ;;
+    "clean") 
+    shift
+    psof_clean "$@"
+    ;;
+    "run") 
+    shift
+    psof_run "$@"
+    ;;
+    "undo") 
+    shift
+    psof_undo "$@"
+    ;;
 esac
 
