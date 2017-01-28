@@ -9,4 +9,5 @@ DB_USERNAME=$(xmllint --xpath "string(//project/database/username)" $1)
 DB_PASSWORD=$(xmllint --xpath "string(//project/database/password)" $1)
 PSOF_XML_PROJECT_APPLICATION_LANGUAGE=$(xmllint --xpath "string(//project/application/language)" $1)
 PSOF_XML_PROJECT_NAME=$(xmllint --xpath "string(//project/name)" $1)
+PSOF_XML_PROJECT_VERSION=$(xmllint --xpath "string(//project/version)" $1)
 

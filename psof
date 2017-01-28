@@ -35,5 +35,13 @@ case ${1} in
     shift
     psof_undo "$@"
     ;;
+    "push") 
+    shift
+    psof_push "$@"
+    ;;
+    "pull") 
+    shift
+    psof_pull "$@"
+    ;;
 esac
 

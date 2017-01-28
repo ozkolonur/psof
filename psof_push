@@ -1,0 +1,21 @@
+#!/bin/bash
+
+PSOF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source ${PSOF_DIR}/psof_config $PWD/psof.xml
+
+echo Building project:${PSOF_XML_PROJECT_NAME}
+
+case $PSOF_XML_PROJECT_APPLICATION_LANGUAGE in
+    "java") 
+    BUILD_CMD="psof clean"
+    $BUILD_CMD
+    BUILD_CMD="zip -r ${PSOF_XML_PROJECT_NAME}-${PSOF_XML_PROJECT_VERSION}.psof ."
+    $BUILD_CMD
+    BUILD_CMD="/bin/cp ${PSOF_XML_PROJECT_NAME}-${PSOF_XML_PROJECT_VERSION}.psof $PSOF_HOME/"
+    $BUILD_CMD
+    ;;
+esac
+
+exit 0;
+

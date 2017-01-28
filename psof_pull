@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PSOF_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+#source ${PSOF_DIR}/psof_config $PWD/psof.xml
+
+echo Pulling $1
+
+TARGET_DIR=$(echo $1|cut -f1 -d"-")
+BUILD_CMD="unzip $PSOF_HOME/$1.psof -d $PWD/$TARGET_DIR"
+$BUILD_CMD
+
+exit 0;
+
